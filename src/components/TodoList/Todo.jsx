@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-export default class Todo extends Component {
-    removeClilcHandler(id){
-this.props.onRemove(id)
+export default function Todo (props){
+  const   removeClilcHandler = (id)=>{
+props.onRemove(id)
     }
-    editClilcHandler(id){
-        this.props.onEdit(id)
+    const editClilcHandler=(id)=>{
+        props.onEdit(id)
     }
 
-    render() {
+  
         return (
             // 'completed' class for completed todos
-            <div className={`todo ${this.props.completed ? 'completed':''}`}style={{ display: 'flex' }}>
-                <li className="todo-item">{this.props.title}</li>
+            <div className={`todo ${props.completed ? 'completed':''}`}style={{ display: 'flex' }}>
+                <li className="todo-item">{props.title}</li>
 
-                <button className="check-btn" onClick={this.editClilcHandler.bind(this,this.props.id)}>
+                <button className="check-btn" onClick={()=>editClilcHandler(props.id)}>
                     <i className="fas fa-check" aria-hidden="true"></i>
                 </button>
 
-                <button className="trash-btn" onClick={this.removeClilcHandler.bind(this,this.props.id)}>
+                <button className="trash-btn" onClick={()=>removeClilcHandler(props.id)}>
                     <i className="fas fa-trash" aria-hidden="true"></i>
                 </button>
             </div>
         )
-    }
+    
 }
